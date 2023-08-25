@@ -632,12 +632,12 @@
 </template>
   
 <style>
-/* .body {
+body {
   width: 100%;
   height: 100%;
   background-color: #141019;
-  background: radial-gradient(at 50% -20%, #908392, #0d060e) fixed;
-} */
+  background: radial-gradient(at 50% -20%, #00008B, #0d060e) fixed;
+}
 
 .container{
   width: 200%;
@@ -695,6 +695,27 @@
   }
 
 }
+
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .container{
+  width: 80%;
+  height: 80%;
+}
+
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .container{
+  width: 50%;
+  height: 50%;
+}
+
+}
+
+
 </style>
 
 
