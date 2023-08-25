@@ -639,7 +639,14 @@ body {
   background: radial-gradient(at 50% -20%, #00008B, #0d060e) fixed;
 }
 
-.container{
+body.home {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  background: white;
+}
+
+.container {
   width: 200%;
   height: 200%;
 }
@@ -699,23 +706,21 @@ body {
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
-  .container{
-  width: 80%;
-  height: 80%;
-}
+  .container {
+    width: 80%;
+    height: 80%;
+  }
 
 }
 
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
-  .container{
-  width: 50%;
-  height: 50%;
-}
+  .container {
+    width: 50%;
+    height: 50%;
+  }
 
 }
-
-
 </style>
 
 
@@ -725,10 +730,16 @@ body {
 import router from '../../router/index.js';
 
 export default {
+
+  unmounted: function () {
+    document.body.className = 'home';
+  },
+
   methods: {
     goBackhome() {
       // Do your stuff
-      router.push({ name: 'Home', params: {'none': ''}});
+      // router.push({ name: 'Home', params: { 'none': '' } });
+      router.replace({ path: '/home' })
     }
   }
 }
