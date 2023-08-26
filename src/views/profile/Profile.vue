@@ -87,10 +87,10 @@ export default {
   
 <style>
 .profile {
-    min-height: 70vh;
+    /* min-height: 70vh; */
     display: flex;
     align-items: center;
-    margin-left: 5em;
+    
 }
 
 .form-control:focus {

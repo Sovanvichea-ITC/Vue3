@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </nav>
-            <nav>
+            <nav class="routeview">
                 <RouterView />
             </nav>
         </div>
@@ -174,6 +174,8 @@
 
 .routeview {
     place-items: center;
+    margin-left: 5em;
+    margin-top: 5em;
 }
 
 .container {
