@@ -1,35 +1,86 @@
 <template>
-    <body>
+    <div class="body">
         <nav class="sidebar locked">
-            <div class="logo_items flex">
-                <span class="nav_image">
-                    <img src="images/logo.png" alt="logo_img" />
-                </span>
-                <span class="logo_name">CodingNepal</span>
-                <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
-                <i class="bx bx-x" id="sidebar-close"></i>
-            </div>
+            <!-- <a href="home/profile"> -->
+            <router-link :to="{ name: 'Profile' }">
+                <div class="logo_items flex">
+                    <span class="nav_image">
+                        <img :src=user.img alt="logo_img" />
+                    </span>
+                    <span class="logo_name">{{ user.fullname }}</span>
+                    <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+                    <i class="bx bx-x" id="sidebar-close"></i>
+                </div>
+            </router-link>
+            <!-- </a> -->
             <div class="menu_container">
                 <div class="menu_items">
-                    <ul class="menu_item">
+                    <ul class="menu_item" id="menu_item_click">
                         <div class="menu_title flex">
                             <span class="title">Dashboard</span>
                             <span class="line"></span>
                         </div>
-                        <li class="item">
-                            <a href="#" class="link flex">
+                        <li class="item" id="home">
+                            <router-link :to="{ name: 'Homepage' }" class="link flex item-select">
+                                <!-- <a href="/home" class="link flex"> -->
                                 <i class="bx bx-home-alt"></i>
-                                <span>Overview</span>
-                            </a>
+                                <span>Home</span>
+                                <!-- </a> -->
+                            </router-link>
                         </li>
-                        <li class="item">
-                            <a href="#" class="link flex">
-                                <i class="bx bx-grid-alt"></i>
-                                <span>All Projects</span>
-                            </a>
+                        <li class="item" id="language">
+                            <router-link :to="{ name: 'Language' }" class="link flex item-select">
+                                <!-- <a href="#" class="link flex"> -->
+                                <!-- <i class="bx bx-grid-alt"></i> -->
+                                <i class='bx bx-world'></i>
+                                <span>Language</span>
+                                <!-- </a> -->
+                            </router-link>
                         </li>
+
+                        <li class="item" id="about">
+                            <router-link :to="{ name: 'About' }" class="link flex item-select">
+                                <!-- <a href="#" class="link flex"> -->
+                                <!-- <i class="bx bx-grid-alt"></i> -->
+                                <i class='bx bxs-contact'></i>
+                                <span>About</span>
+                                <!-- </a> -->
+                            </router-link>
+                        </li>
+
+                        <li class="item" id="setting">
+                            <router-link :to="{ name: 'Setting' }" class="link flex item-select">
+                                <!-- <a href="#" class="link flex"> -->
+                                <i class="bx bx-cog"></i>
+                                <span>Setting</span>
+                                <!-- </a> -->
+                            </router-link>
+                        </li>
+
+                        <li class="item" id="contactUs">
+                            <router-link :to="{ name: 'Contact' }" class="link flex item-select">
+                                <!-- <a href="#" class="link flex"> -->
+                                <!-- <i class="bx bx-grid-alt"></i> -->
+                                <i class='bx bxs-contact'></i>
+                                <span>Contact Us</span>
+                                <!-- </a> -->
+                            </router-link>
+                        </li>
+
+                        <li class="item " id="logout">
+                            <router-link :to="{ name: 'Home' }" class="link flex ">
+                                <!-- <a href="#" class="link flex"> -->
+                                <!-- <i class="bx bx-grid-alt"></i> -->
+                                <i class='bx bx-log-out'></i>
+                                <span>Logout</span>
+                                <!-- </a> -->
+                            </router-link>
+                        </li>
+
+
+
                     </ul>
-                    <ul class="menu_item">
+                    <!-- <ul class="menu_item">
                         <div class="menu_title flex">
                             <span class="title">Editor</span>
                             <span class="line"></span>
@@ -76,7 +127,7 @@
                                 <span>Setting</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="sidebar_profile flex">
                     <span class="nav_image">
@@ -90,15 +141,18 @@
             </div>
         </nav>
         <!-- Navbar -->
-        <nav class="navbar flex">
-            <i class="bx bx-menu" id="sidebar-open"></i>
-            <input type="text" placeholder="Search..." class="search_box" />
-            <span class="nav_image">
-                <img src="images/profile.jpg" alt="logo_img" />
-            </span>
-        </nav>
-    </body>
-    <RouterView />
+        <!-- <nav class="navbar flex" > -->
+        <!-- <i class="bx bx-menu" id="sidebar-open"></i> -->
+        <!-- <input type="text" placeholder="Search..." class="search_box" /> -->
+        <!-- <span class="nav_image"> -->
+        <!-- <img src="images/profile.jpg" alt="logo_img" /> -->
+        <!-- </span> -->
+        <!-- </nav> -->
+
+        <div style="routeview">
+            <RouterView />
+        </div>
+    </div>
 </template>
   
 <style>
@@ -109,11 +163,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    /* font-family: "Poppins", sans-serif; */
 }
 
-body {
+.body {
     min-height: 100vh;
+    background: #eef5fe;
+}
+
+body{
     background: #eef5fe;
 }
 
@@ -130,8 +188,8 @@ body {
 }
 
 .nav_image img {
-    height: 35px;
-    width: 35px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -246,7 +304,13 @@ body {
 
 .link:hover {
     color: #fff;
-    background-color: #4070f4;
+    background-color: #F1C40F;
+    /* background-color: #4070f4; */
+}
+
+.active {
+    background-color: #F1C40F;
+    /* background-color: #440ff1; */
 }
 
 .link span {
@@ -356,21 +420,55 @@ body {
     }
 }
 </style>
+
+
   
 <script>
+
+import router from '../router/index.js';
+
 export default {
     data: () => ({
+        user: {
+            idUser: "123",
+            fullname: "John Smith",
+            img: "https://cdn.icon-icons.com/icons2/2620/PNG/512/among_us_player_red_icon_156942.png",
+        },
+
+        
+
         sidebar: null,
         sidebarOpenBtn: null,
         sidebarCloseBtn: null,
         sidebarLockBtn: null,
+        selectActiveBtn: null,
+
+
     }),
+
+
+
+
     mounted() {
         // Selecting the sidebar and buttons
         this.sidebar = document.querySelector(".sidebar");
-        this.sidebarOpenBtn = document.querySelector("#sidebar-open");
-        this.sidebarCloseBtn = document.querySelector("#sidebar-close");
+        // this.sidebarOpenBtn = document.querySelector("#sidebar-open");
+        // this.sidebarCloseBtn = document.querySelector("#sidebar-close");
         this.sidebarLockBtn = document.querySelector("#lock-icon");
+        this.selectActiveBtn = document.getElementById("menu_item_click");
+        var btns = this.selectActiveBtn.getElementsByClassName("item-select");
+
+        console.log(btns);
+
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
+                }
+                this.className += " active";
+            });
+        }
 
         // Function to toggle the lock state of the sidebar
         const toggleLock = () => {
@@ -416,8 +514,15 @@ export default {
         this.sidebarLockBtn.addEventListener("click", toggleLock);
         this.sidebar.addEventListener("mouseleave", hideSidebar);
         this.sidebar.addEventListener("mouseenter", showSidebar);
-        this.sidebarOpenBtn.addEventListener("click", toggleSidebar);
-        this.sidebarCloseBtn.addEventListener("click", toggleSidebar);
+        // this.sidebarOpenBtn.addEventListener("click", toggleSidebar);
+        // this.sidebarCloseBtn.addEventListener("click", toggleSidebar);
+    },
+    methods: {
+        gotoProfile() {
+            // Do your stuff
+            // router.push({ name: 'Profile', params: { 'none': '' } });
+            router.replace({ path: '/home/profile' })
+        }
     },
 }
 </script>
