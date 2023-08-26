@@ -1,86 +1,87 @@
 <template>
-    <div class="body">
-        <nav class="sidebar locked">
-            <!-- <a href="home/profile"> -->
-            <router-link :to="{ name: 'Profile' }">
-                <div class="logo_items flex">
-                    <span class="nav_image">
-                        <img :src=user.img alt="logo_img" />
-                    </span>
-                    <span class="logo_name">{{ user.fullname }}</span>
-                    <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
-                    <i class="bx bx-x" id="sidebar-close"></i>
-                </div>
-            </router-link>
-            <!-- </a> -->
-            <div class="menu_container">
-                <div class="menu_items">
-                    <ul class="menu_item" id="menu_item_click">
-                        <div class="menu_title flex">
-                            <span class="title">Dashboard</span>
-                            <span class="line"></span>
-                        </div>
-                        <li class="item" id="home">
-                            <router-link :to="{ name: 'Homepage' }" class="link flex item-select">
-                                <!-- <a href="/home" class="link flex"> -->
-                                <i class="bx bx-home-alt"></i>
-                                <span>Home</span>
-                                <!-- </a> -->
-                            </router-link>
-                        </li>
-                        <li class="item" id="language">
-                            <router-link :to="{ name: 'Language' }" class="link flex item-select">
-                                <!-- <a href="#" class="link flex"> -->
-                                <!-- <i class="bx bx-grid-alt"></i> -->
-                                <i class='bx bx-world'></i>
-                                <span>Language</span>
-                                <!-- </a> -->
-                            </router-link>
-                        </li>
+    <div class="container">
+        <div class="">
+            <nav class="sidebar locked">
+                <!-- <a href="home/profile"> -->
+                <router-link :to="{ name: 'Profile' }">
+                    <div class="logo_items flex">
+                        <span class="nav_image">
+                            <img :src=user.img alt="logo_img" />
+                        </span>
+                        <span class="logo_name">{{ user.fullname }}</span>
+                        <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+                        <i class="bx bx-x" id="sidebar-close"></i>
+                    </div>
+                </router-link>
+                <!-- </a> -->
+                <div class="menu_container">
+                    <div class="menu_items">
+                        <ul class="menu_item" id="menu_item_click">
+                            <div class="menu_title flex">
+                                <span class="title">Dashboard</span>
+                                <span class="line"></span>
+                            </div>
+                            <li class="item" id="home">
+                                <router-link :to="{ name: 'Homepage' }" class="link flex item-select">
+                                    <!-- <a href="/home" class="link flex"> -->
+                                    <i class="bx bx-home-alt"></i>
+                                    <span>Home</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
+                            <li class="item" id="language">
+                                <router-link :to="{ name: 'Language' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bx-world'></i>
+                                    <span>Language</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
 
-                        <li class="item" id="about">
-                            <router-link :to="{ name: 'About' }" class="link flex item-select">
-                                <!-- <a href="#" class="link flex"> -->
-                                <!-- <i class="bx bx-grid-alt"></i> -->
-                                <i class='bx bxs-contact'></i>
-                                <span>About</span>
-                                <!-- </a> -->
-                            </router-link>
-                        </li>
+                            <li class="item" id="about">
+                                <router-link :to="{ name: 'About' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bxs-contact'></i>
+                                    <span>About</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
 
-                        <li class="item" id="setting">
-                            <router-link :to="{ name: 'Setting' }" class="link flex item-select">
-                                <!-- <a href="#" class="link flex"> -->
-                                <i class="bx bx-cog"></i>
-                                <span>Setting</span>
-                                <!-- </a> -->
-                            </router-link>
-                        </li>
+                            <li class="item" id="setting">
+                                <router-link :to="{ name: 'Setting' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <i class="bx bx-cog"></i>
+                                    <span>Setting</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
 
-                        <li class="item" id="contactUs">
-                            <router-link :to="{ name: 'Contact' }" class="link flex item-select">
-                                <!-- <a href="#" class="link flex"> -->
-                                <!-- <i class="bx bx-grid-alt"></i> -->
-                                <i class='bx bxs-contact'></i>
-                                <span>Contact Us</span>
-                                <!-- </a> -->
-                            </router-link>
-                        </li>
+                            <li class="item" id="contactUs">
+                                <router-link :to="{ name: 'Contact' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bxs-contact'></i>
+                                    <span>Contact Us</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
 
-                        <li class="item " id="logout">
-                            <router-link :to="{ name: 'Home' }" class="link flex ">
-                                <!-- <a href="#" class="link flex"> -->
-                                <!-- <i class="bx bx-grid-alt"></i> -->
-                                <i class='bx bx-log-out'></i>
-                                <span>Logout</span>
-                                <!-- </a> -->
-                            </router-link>
-                        </li>
+                            <li class="item " id="logout">
+                                <router-link :to="{ name: 'Home' }" class="link flex ">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bx-log-out'></i>
+                                    <span>Logout</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
 
 
 
-                    </ul>
-                    <!-- <ul class="menu_item">
+                        </ul>
+                        <!-- <ul class="menu_item">
                         <div class="menu_title flex">
                             <span class="title">Editor</span>
                             <span class="line"></span>
@@ -128,18 +129,22 @@
                             </a>
                         </li>
                     </ul> -->
-                </div>
-                <div class="sidebar_profile flex">
-                    <span class="nav_image">
-                        <img src="images/profile.jpg" alt="logo_img" />
-                    </span>
-                    <div class="data_text">
-                        <span class="name">David Oliva</span>
-                        <span class="email">david@gmail.com</span>
+                    </div>
+                    <div class="sidebar_profile flex">
+                        <span class="nav_image">
+                            <img src="images/profile.jpg" alt="logo_img" />
+                        </span>
+                        <div class="data_text">
+                            <span class="name">David Oliva</span>
+                            <span class="email">david@gmail.com</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            <nav>
+                <RouterView />
+            </nav>
+        </div>
         <!-- Navbar -->
         <!-- <nav class="navbar flex" > -->
         <!-- <i class="bx bx-menu" id="sidebar-open"></i> -->
@@ -149,8 +154,8 @@
         <!-- </span> -->
         <!-- </nav> -->
 
-        <div style="routeview">
-            <RouterView />
+        <div class="">
+
         </div>
     </div>
 </template>
@@ -162,16 +167,28 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
+    /* box-sizing: border-box; */
     /* font-family: "Poppins", sans-serif; */
 }
 
-.body {
-    min-height: 100vh;
+.routeview {
+    place-items: center;
+}
+
+.container {
+    width: 100%;
+    justify-content: center;
+    /* min-height: 100vh; */
+    margin: auto;
     background: #eef5fe;
 }
 
-body{
+
+
+
+
+body {
     background: #eef5fe;
 }
 
@@ -435,7 +452,7 @@ export default {
             img: "https://cdn.icon-icons.com/icons2/2620/PNG/512/among_us_player_red_icon_156942.png",
         },
 
-        
+
 
         sidebar: null,
         sidebarOpenBtn: null,

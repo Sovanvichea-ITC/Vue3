@@ -70,7 +70,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.name.includes('Profile') && !isAuthenticated) next({ name: 'guest' })
   if (to.name.includes('Contact') && !isAuthenticated) next({ name: 'guest' })
   if (to.name.includes('About') && !isAuthenticated) next({ name: 'guest' })
-  if (to.name.includes('guest') && isAuthenticated) next({ name: 'Home' })
+  if (to.name.includes('guest') && isAuthenticated) next({ name: 'Homepage' })
 
   if ((to.name.includes('Login') || to.name.includes('Register')) && isAuthenticated) next({ name: 'Home' })
 

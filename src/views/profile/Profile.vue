@@ -90,7 +90,7 @@ export default {
     min-height: 70vh;
     display: flex;
     align-items: center;
-    margin-left: 15em;
+    margin-left: 5em;
 }
 
 .form-control:focus {
