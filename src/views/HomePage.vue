@@ -183,7 +183,7 @@
     justify-content: center;
     /* min-height: 100vh; */
     margin: auto;
-    background: #eef5fe;
+    /* background: #eef5fe; */
 }
 
 
@@ -191,7 +191,7 @@
 
 
 body {
-    background: #eef5fe;
+    background: #F0F3F4;
 }
 
 /* Pre css */
