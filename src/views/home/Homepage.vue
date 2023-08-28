@@ -1,7 +1,7 @@
 <template>
-    <div class="homepage">
-        <div class="wrapper">
-            <div class="card-d bg-card-d-1">
+    <div class="homepage ">
+        <div class="wrapper ">
+            <div class="card-d bg-card-d-1 ">
                 <div class="circle">
                     <div class="bar"></div>
                     <div class="box"><span></span></div>
@@ -9,12 +9,12 @@
                 <!-- <div class="text">HTML & CSS</div> -->
             </div>
 
-            <div class="card-d bg-card-d border-left-USD">
+            <div class="card-d bg-card-d border-left-USD ">
                 <span>Total in USD </span><br>
                 <h3 class="fs-3"><b>300,330,332 USD</b></h3>
             </div>
 
-            <div class="card-d bg-card-d border-left-KHR">
+            <div class="card-d bg-card-d border-left-KHR ">
                 <span>Total in KHR </span><br>
                 <h3 class="fs-3"><b>300,330,332 KHR</b></h3>
 
@@ -51,10 +51,12 @@
             </div>
             <div class="row g-3">
                 <div class="col-4 p-3 d-flex justify-content-center">
-                    <div class="button-8" role="button">
-                        <div><img src="../../assets/svg/transfer.svg"></div>
-                        <div><span>Transfer</span></div>
-                    </div>
+                    <router-link :to="{ name: 'Transfer' }">
+                        <div class="button-8" role="button">
+                            <div><img src="../../assets/svg/transfer.svg"></div>
+                            <div><span>Transfer</span></div>
+                        </div>
+                    </router-link>
                 </div>
                 <div class="col-4 p-3 d-flex justify-content-center">
                     <div class="button-8" role="button">
@@ -71,8 +73,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -92,7 +92,7 @@ export default {
             size: 150,
             value: this.persent,
 
-            fill: { gradient: [' #2d53fc', '#0926A7']}
+            fill: { gradient: [' #2d53fc', '#0926A7'] }
         }
         $(".circle .bar").circleProgress(options).on('circle-animation-progress',
             function (event, progress, stepValue) {
@@ -112,9 +112,8 @@ export default {
 </script>
   
 <style>
-
-canvas{
-column-fill:#F1C40F;
+canvas {
+    column-fill: #F1C40F;
 }
 
 .info {
@@ -139,17 +138,17 @@ column-fill:#F1C40F;
     padding-top: 5px;
     padding-bottom: 5px;
     border-left-style: solid;
-  
+
     padding-left: 10px;
     border-left-width: 6px;
     /* background-color: #ffc39c; */
 }
 
-.border-left-KHR{
+.border-left-KHR {
     border-left-color: #F1C40F;
 }
 
-.border-left-USD{
+.border-left-USD {
     border-left-color: #2d53fc;
 }
 
@@ -252,7 +251,7 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    
+
 }
 
 .card-d .circle .box {
@@ -270,7 +269,7 @@ body{
 
 .card-d .circle .box span,
 .wrapper .card-d .text {
-    
+
     background: -webkit-linear-gradient(left, #2d53fc, #0926A7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -286,7 +285,7 @@ body{
 
 .card-d .circle:hover .box span {
     transform: translate(-45%, -45%) scale(1.09);
-    
+
 }
 
 .card-d .text {

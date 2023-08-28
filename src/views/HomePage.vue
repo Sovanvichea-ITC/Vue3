@@ -22,7 +22,7 @@
                                 <span class="line"></span>
                             </div>
                             <li class="item" id="home">
-                                <router-link :to="{ name: 'Homepage' }" class="link flex item-select">
+                                <router-link :to="{ name: 'Homepage' }" class="link flex item-select" >
                                     <!-- <a href="/home" class="link flex"> -->
                                     <i class="bx bx-home-alt"></i>
                                     <span>Home</span>
@@ -477,17 +477,9 @@ export default {
         this.selectActiveBtn = document.getElementById("menu_item_click");
         var btns = this.selectActiveBtn.getElementsByClassName("item-select");
 
-        console.log(btns);
+        // console.log(btns);
 
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                if (current.length > 0) {
-                    current[0].className = current[0].className.replace(" active", "");
-                }
-                this.className += " active";
-            });
-        }
+
 
         // Function to toggle the lock state of the sidebar
         const toggleLock = () => {
@@ -535,6 +527,17 @@ export default {
         this.sidebar.addEventListener("mouseenter", showSidebar);
         // this.sidebarOpenBtn.addEventListener("click", toggleSidebar);
         // this.sidebarCloseBtn.addEventListener("click", toggleSidebar);
+
+
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
+                }
+                this.className += " active";
+            });
+        }
     },
     methods: {
         gotoProfile() {
