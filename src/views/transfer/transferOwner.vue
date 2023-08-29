@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12 col-12">
         <div class="row">
-            <div class="col-12 mb-4">
+            <!-- <div class="col-12 mb-4">
                 <div class="row box-right">
                     <div class="col-md-8 ps-0 ">
                         <p class="ps-3 textmuted fw-bold h6 mb-0">TOTAL RECIEVED</p>
@@ -20,41 +20,249 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12 px-0">
                 <div class="box-right">
                     <div class="d-flex mb-2">
-                        <p class="fw-bold">Create new invoice</p>
-                        <p class="ms-auto textmuted"><span class="fas fa-times"></span></p>
+                        <h5>Tranfer to own account</h5>
+                        <!-- <h1 class="fw-bold">Tranfer to own account</h1> -->
+                        <!-- <p class="ms-auto textmuted"><span class="fas fa-times"></span></p> -->
                     </div>
-                    <div class="d-flex mb-2">
-                        <p class="h7">#AL2545</p>
-                        <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-                            PAYMENT LINK </p>
-                    </div>
+
                     <div class="row">
                         <div class="col-12 mb-2">
-                            <p class="textmuted h8">Project / Description</p> <input class="form-control" type="text"
-                                placeholder="Legal Consulting">
+
+                            <p class="textmuted h8">From</p>
+
+                            <select class="form-control" @change="changeCurrencyFrom($event)">
+                                <option disabled selected value="">Select Credit account</option>
+                                <option v-for="(option, optionIndex) in optionsFrom" :key="optionIndex"
+                                    :value="optionIndex">
+                                    <span>{{ option.id }} </span>
+                                    &nbsp;<span>{{ option.name }} </span>
+                                    &nbsp; <span>{{ option.money }} </span>
+                                    <span>{{ option.type }} </span>
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-12 mb-2">
+
+                            <p class="textmuted h8">To</p>
+
+                            <select class="form-control" @change="changeCurrencyTo($event)">
+                                <option disabled selected value="">Select Credit account</option>
+                                <option v-for="(option, optionIndex)  in optionsTo" :key="optionIndex" :value="optionIndex">
+                                    <span>{{ option.id }} </span>
+                                    &nbsp;<span>{{ option.name }} </span>
+                                    &nbsp; <span>{{ option.money }} </span>
+                                    <span>{{ option.type }} </span>
+                                </option>
+
+                            </select>
+
                         </div>
                         <div class="col-6">
-                            <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                                placeholder="Oct 25, 2020">
+                            <p class="textmuted h8">Amount</p>
+                            <input class="form-control" type="text" name="currency-field" id="currency-field"
+                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="00.00">
                         </div>
                         <div class="col-6">
-                            <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                                placeholder="Oct 25, 2020">
+                            <p class="textmuted h8">Due on</p> <input class="form-control" type="text" placeholder="00.00">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="btn btn-primary d-block h8">PAY <span class="fas fa-dollar-sign ms-2"></span>1400<span
-                    class="ms-3 fas fa-arrow-right"></span>
+            <div class="btn btn-primary d-block h8" @click="getData()">PAY <span
+                    class="fas fa-dollar-sign ms-2"></span>1400<span class="ms-3 fas fa-arrow-right"></span>
             </div>
         </div>
     </div>
 </template>
+<script>
+export default {
+
+    data() {
+        return {
+            selectedFromAcc: '',
+            selectedToAcc: '',
+            currency: "KHR",
+            amountMoney: '',
+            optionsFrom: [
+                { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
+                { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
+                { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
+            ],
+            optionsTo: [
+                { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
+                { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
+                { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
+            ]
+        }
+    },
+
+    mounted() {
+
+    },
+    watch: {
+        // currency() {
+        //     this.onChange(this.currency);
+        // },
+        // amountMoney(oldvalue, newvalue) {
+        //     console.log("newvalue: ", newvalue)
+        // }
+    },
+    methods: {
+        changeCurrencyFrom(event) {
+            // this.user.address.country = event.target.value
+            if (event.target.value) {
+                this.selectedFromAcc = this.optionsFrom[event.target.value]
+                this.currency = this.selectedFromAcc.type;
+            }
+            console.log("changeCurrencyFrom: ", event.target.value);
+            this.onChange(this.currency);
+
+
+            // alert() 
+        },
+        changeCurrencyTo(event) {
+            if (event.target.value) {
+                this.selectedToAcc = this.optionsTo[event.target.value]
+                this.currency = this.selectedToAcc.type;
+            }
+            console.log("changeCurrencyTo: ", event.target.value);
+
+        },
+        onChange(curr) {
+            // var amount = '';
+            $("input[data-type='currency']").on({
+                keyup: function () {
+                    var amount = formatCurrency($(this));
+                    console.log(amount)
+                },
+                blur: function () {
+                    formatCurrency($(this), "blur");
+
+                }
+            });
+
+
+            function formatNumber(n) {
+                // format number 1000000 to 1,234,567
+                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+
+
+            function formatCurrency(input, blur) {
+                // appends $ to value, validates decimal side
+                // and puts cursor back in right position.
+
+                // get input value
+                var input_val = input.val();
+                // alert(input_val)
+
+                // don't validate empty input
+                if (input_val === "") { return; }
+
+                // original length
+                var original_len = input_val.length;
+
+                // initial caret position 
+                var caret_pos = input.prop("selectionStart");
+
+                // check for decimal
+                if (input_val.indexOf(".") >= 0) {
+
+                    // get position of first decimal
+                    // this prevents multiple decimals from
+                    // being entered
+                    var decimal_pos = input_val.indexOf(".");
+
+                    // split number by decimal point
+                    var left_side = input_val.substring(0, decimal_pos);
+                    var right_side = input_val.substring(decimal_pos);
+
+                    // add commas to left side of number
+                    left_side = formatNumber(left_side);
+
+                    // validate right side
+                    right_side = formatNumber(right_side);
+
+                    // On blur make sure 2 numbers after decimal
+                    if (blur === "blur") {
+                        right_side += "00";
+                    }
+
+                    // Limit decimal to only 2 digits
+                    right_side = right_side.substring(0, 2);
+
+                    // join number by . + currency
+
+
+
+                    input_val = curr + left_side + "." + right_side;
+
+                    // console.log(parseFloat(((left_side.replace(',',"")) + "." + right_side)))
+                    // amount = left_side.replace(',', "")
+                    // amount = parseFloat(amount) + "." + right_side;
+                    // this.amountMoney = amount
+
+                    // amount = left_side + "." + right_side;
+
+                } else {
+
+                    input_val = formatNumber(input_val);
+
+                    input_val = curr + input_val;
+
+                    // final formatting
+                    if (blur === "blur") {
+                        input_val += ".00";
+                    }
+                    // amount = parseFloat(((left_side.replace(',', "")) + "." + right_side));
+                    // amount = left_side.replace(',', "")
+                    // amount = parseFloat(amount) + "." + right_side;
+                    // this.amountMoney = amount
+                    // amount = left_side + "." + right_side;
+                }
+
+                // send updated string to input
+
+                input.val(input_val);
+
+
+                // put caret back in the right position
+                var updated_len = input_val.length;
+                caret_pos = updated_len - original_len + caret_pos;
+                input[0].setSelectionRange(caret_pos, caret_pos);
+
+                // return amount;
+            }
+
+        },
+        getData() {
+
+            this.amountMoney = $("input[data-type='currency']").val()
+            console.log("selectedFromAcc", this.selectedFromAcc)
+            console.log("selectedToAcc", this.selectedToAcc)
+            console.log("amountMoney", this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""))
+
+            // $("input[data-type='currency']").val(this.amountMoney)
+        }
+
+    },
+
+    // datas: () => ({
+    //     selectedAcc: null,
+
+    // }),
+
+}
+
+</script>
 
 <style>
 p {
