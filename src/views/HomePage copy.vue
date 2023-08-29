@@ -1,53 +1,46 @@
+
 <script setup>
-
-import BtnClick from '../components/button/BtnClick.vue'
-
-
+import Button from '../components/button/BtnClick.vue'
 
 const myItems = [
     {
         id: 'home',
         name: 'Home',
         url: 'Homepage',
-        icon: 'bx bx-home-alt',
-        active: false
+        icon: 'bx bx-home-alt'
     },
     {
         id: 'language',
         name: 'Language',
         url: 'Language',
-        icon: 'bx bx-world',
-        active: false
+        icon: 'bx bx-world'
     },
     {
         id: 'about',
         name: 'About',
         url: 'About',
-        icon: 'bx bxs-contact',
-        active: false
+        icon: 'bx bxs-contact'
     },
     {
         id: 'setting',
         name: 'Setting',
         url: 'Setting',
-        icon: 'bx bx-cog',
-        active: false
+        icon: 'bx bx-cog'
     },
     {
         id: 'contact',
         name: 'Contact Us',
         url: 'Contact',
-        icon: 'bx bxs-contact',
-        active: false
+        icon: 'bx bxs-contact'
     },
     {
         id: 'logout',
         name: 'Logout',
         url: 'Home',
-        icon: 'bx bx-log-out',
-        active: false
+        icon: 'bx bx-log-out'
     },
 ]
+
 
 </script>
 
@@ -55,6 +48,7 @@ const myItems = [
     <div class="container">
         <div class="">
             <nav class="sidebar locked">
+                <!-- <a href="home/profile"> -->
                 <router-link :to="{ name: 'Profile' }">
                     <div class="logo_items flex">
                         <span class="nav_image">
@@ -65,6 +59,7 @@ const myItems = [
                         <i class="bx bx-x" id="sidebar-close"></i>
                     </div>
                 </router-link>
+                <!-- </a> -->
                 <div class="menu_container">
                     <div class="menu_items">
                         <ul class="menu_item" id="menu_item_click">
@@ -72,8 +67,116 @@ const myItems = [
                                 <span class="title">Dashboard</span>
                                 <span class="line"></span>
                             </div>
-                            <BtnClick :items="myItems" @clickedID="onClicked"></BtnClick>
+                            <li class="item" id="home">
+                                <router-link :to="{ name: 'Homepage' }" class="link flex item-select">
+                                    <!-- <a href="/home" class="link flex"> -->
+                                    <i class="bx bx-home-alt"></i>
+                                    <span>Home</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
+                            <li class="item" id="language">
+                                <router-link :to="{ name: 'Language' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bx-world'></i>
+                                    <span>Language</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
+
+                            <li class="item" id="about">
+                                <router-link :to="{ name: 'About' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bxs-contact'></i>
+                                    <span>About</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
+
+                            <li class="item" id="setting">
+                                <router-link :to="{ name: 'Setting' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <i class="bx bx-cog"></i>
+                                    <span>Setting</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
+
+                            <li class="item" id="contactUs">
+                                <router-link :to="{ name: 'Contact' }" class="link flex item-select">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bxs-contact'></i>
+                                    <span>Contact Us</span>
+                                    <!-- </a> -->
+                                </router-link>
+                            </li>
+
+                            <li class="item " id="logout">
+                                <router-link :to="{ name: 'Home' }" class="link flex ">
+                                    <!-- <a href="#" class="link flex"> -->
+                                    <!-- <i class="bx bx-grid-alt"></i> -->
+                                    <i class='bx bx-log-out'></i>
+                                    <span>Logout</span>
+                                    <!-- </a> -->
+                                </router-link>
+
+
+                            </li>
+                            <Button :items="myItems"></Button>
+
+
                         </ul>
+                        <!-- <ul class="menu_item">
+                        <div class="menu_title flex">
+                            <span class="title">Editor</span>
+                            <span class="line"></span>
+                        </div>
+                        <li class="item">
+                            <a href="#" class="link flex">
+                                <i class="bx bxs-magic-wand"></i>
+                                <span>Magic Build</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" class="link flex">
+                                <i class="bx bx-folder"></i>
+                                <span>New Projects</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" class="link flex">
+                                <i class="bx bx-cloud-upload"></i>
+                                <span>Upload New</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="menu_item">
+                        <div class="menu_title flex">
+                            <span class="title">Setting</span>
+                            <span class="line"></span>
+                        </div>
+                        <li class="item">
+                            <a href="#" class="link flex">
+                                <i class="bx bx-flag"></i>
+                                <span>Notice Board</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" class="link flex">
+                                <i class="bx bx-award"></i>
+                                <span>Award</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" class="link flex">
+                                <i class="bx bx-cog"></i>
+                                <span>Setting</span>
+                            </a>
+                        </li>
+                    </ul> -->
                     </div>
                     <div class="sidebar_profile flex">
                         <span class="nav_image">
@@ -89,6 +192,18 @@ const myItems = [
             <nav class="routeview">
                 <RouterView />
             </nav>
+        </div>
+        <!-- Navbar -->
+        <!-- <nav class="navbar flex" > -->
+        <!-- <i class="bx bx-menu" id="sidebar-open"></i> -->
+        <!-- <input type="text" placeholder="Search..." class="search_box" /> -->
+        <!-- <span class="nav_image"> -->
+        <!-- <img src="images/profile.jpg" alt="logo_img" /> -->
+        <!-- </span> -->
+        <!-- </nav> -->
+
+        <div class="">
+
         </div>
     </div>
 </template>
@@ -393,6 +508,8 @@ export default {
         sidebarOpenBtn: null,
         sidebarCloseBtn: null,
         sidebarLockBtn: null,
+        selectActiveBtn: null,
+
 
     }),
 
@@ -405,7 +522,8 @@ export default {
         // this.sidebarOpenBtn = document.querySelector("#sidebar-open");
         // this.sidebarCloseBtn = document.querySelector("#sidebar-close");
         this.sidebarLockBtn = document.querySelector("#lock-icon");
-
+        this.selectActiveBtn = document.getElementById("menu_item_click");
+        var btns = this.selectActiveBtn.getElementsByClassName("item-select");
 
         // console.log(btns);
 
@@ -459,27 +577,22 @@ export default {
         // this.sidebarCloseBtn.addEventListener("click", toggleSidebar);
 
 
-
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
+                }
+                this.className += " active";
+            });
+        }
     },
     methods: {
         gotoProfile() {
             // Do your stuff
             // router.push({ name: 'Profile', params: { 'none': '' } });
             router.replace({ path: '/home/profile' })
-        },
-        onClicked(id) {
-
-            // myItems[1].active = true;
-
-            // alert(id);
-            // console.log(this.items[id], id);
-            // this.selectActiveBtn = document.getElementById(id);
-            // alert(this.selectActiveBtn);
-            // this.selectActiveBtn.classList.add('active')
-            // this.selectActiveBtn.className.replace("active", "");
-            // current.className = current.className.replace(" active", "");
         }
-
     },
 }
 </script>

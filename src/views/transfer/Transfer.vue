@@ -1,4 +1,5 @@
 <script setup>
+
 import Breadcrumbs from '../../components/breadcrumb/Breadcrumb.vue'
 // import Simple from './simple.vue'
 import Simple from './transferOwner.vue'

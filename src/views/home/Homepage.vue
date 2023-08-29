@@ -1,4 +1,7 @@
+
+
 <template>
+
     <div class="homepage ">
         <div class="wrapper ">
             <div class="card-d bg-card-d-1 ">
@@ -17,9 +20,6 @@
             <div class="card-d bg-card-d border-left-KHR ">
                 <span>Total in KHR </span><br>
                 <h3 class="fs-3"><b>300,330,332 KHR</b></h3>
-
-
-
             </div>
 
         </div>
@@ -73,6 +73,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
