@@ -21,8 +21,8 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-6 px-0 mb-3 " v-bind:class="{ blur: getBlur }">
-                <div class=" box-right ">
+            <div class="col-6 px-0 mb-3" v-bind:class="{ blur: getBlur }">
+                <div class=" box-right shadow-sm">
                     <div class=" d-flex mb-2">
                         <h5>Tranfer to own account</h5>
                         <!-- <h1 class="fw-bold">Tranfer to own account</h1> -->
@@ -84,8 +84,8 @@
                     </div>
                 </div>
                 <div class="col-12 flex justify-content-center mt-4">
-                    <div class="col-12">
-                        <div class="bg-color-bluedark  align-middle text-center  p-2 rounded-lg font-weight-bold"
+                    <div class="col-12 ">
+                        <div class="bg-color-bluedark  align-middle text-center  p-2 rounded-lg shadow-sm font-weight-bold "
                             @click="getData()"> <span><b>Transfer to Own</b></span>
                             <!-- <span class="fas fa-dollar-sign ms-2"></span> -->
 
@@ -97,17 +97,28 @@
             </div>
         </div>
     </div>
-    <div v-if="showPopup">
-        <div id="" class=" popupComfirmTransfer ">
+    <div v-if="showPopupComfirm">
+        <div id="" class="popupComfirmTransfer">
             <popUpComfirm @clickedbtn="transferComfirmPopup">
             </popUpComfirm>
         </div>
+    </div>
+
+    <div v-if="showPopupTransfered">
+        <div id="" class="popupComfirmTransfer">
+            <popUpTransfer></popUpTransfer>
+        </div>
+
+
     </div>
 </template>
 
 <script setup>
 
-import popUpComfirm from '../../components/popup/popup.vue'
+import popUpComfirm from '../../components/popup/comfirm/popup.vue'
+
+import popUpTransfer from '../../components/popup/transfered/PopupTransfered.vue'
+
 
 </script>
 
@@ -116,7 +127,8 @@ export default {
 
     data() {
         return {
-            showPopup: false,
+            showPopupComfirm: false,
+            showPopupTransfered: false,
             selectedFromAcc: '',
             selectedToAcc: '',
             selectedPurpose: '',
@@ -293,7 +305,7 @@ export default {
             this.getBlur = true;
             $("#formTransfer").find("*").prop('disabled', true);
 
-            this.showPopup = true;
+            this.showPopupComfirm = true;
 
             this.amountMoney = $("input[data-type='currency']").val()
             console.log("selectedFromAcc", this.selectedFromAcc)
@@ -305,11 +317,12 @@ export default {
         transferComfirmPopup(env) {
             // alert(env)
             if (env) {
-
+                // this.showPopupComfirm = false;
+                this.showPopupTransfered = true;
             } else {
                 $("#formTransfer").find("*").prop('disabled', false);
                 this.getBlur = false;
-                this.showPopup = false;
+                this.showPopupComfirm = false;
                 // this.getBlur = true;
             }
         }
@@ -353,6 +366,9 @@ p {
     left: 27%;
     top: 22%;
     z-index: 3;
+
+    transition-duration: 10s, 30s, 230ms;
+
 }
 
 /* .container {

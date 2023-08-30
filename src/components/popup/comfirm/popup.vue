@@ -1,14 +1,14 @@
 <template>
     <div class="popup d-flex flex justify-content-center flex-column ">
-        <div class="w-49 bg-white shadow rounded-lg p-4">
+        <div class="w-49 bg-white shadow rounded-lg pt-4 pb-4 pr-5 pl-5">
             <div class="icon flex justify-content-center ">
-                <img src="../../assets/svg/wallet.svg">
+                <img src="../../../assets/svg/wallet.svg">
             </div>
             <div class="text-decri flex justify-content-center mb-2">
                 <h6><b>You will transfer</b></h6>
                 <!-- #F1C40F -->
             </div>
-            <div class="money flex justify-content-center mb-4 ">
+            <div class="money flex justify-content-center mb-3 ">
                 <h3><b>{{ confirmTransfer.amountMoney }} {{ confirmTransfer.type }}</b></h3>
 
             </div>
@@ -16,7 +16,7 @@
                 <h6><b>To</b></h6>
             </div>
             <div class="flex justify-content-center text-color-name mb-2">
-                <h6><b> {{ confirmTransfer.TransferName }}</b></h6>
+                <h5><b><b> {{ confirmTransfer.TransferName }}</b></b></h5>
 
             </div>
             <div class="text-name flex justify-content-center mb-2">
@@ -35,6 +35,12 @@
 </template>
 
 <style>
+.popup {
+    transition-duration: 10s, 30s, 230ms;
+    transition-timing-function: ease-out;
+}
+
+
 .text-color-name {
     color: #F1C40F;
 }
