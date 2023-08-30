@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-12 col-12">
+    <div id="formTransfer" class="col-md-12 col-12">
         <div class="row">
             <!-- <div class="col-12 mb-4">
                 <div class="row box-right">
@@ -36,8 +36,7 @@
 
                             <select class="form-control" @change="changeCurrencyFrom($event)">
                                 <option disabled selected value="">Select Credit account</option>
-                                <option v-for="(option, optionIndex) in optionsFrom" :key="optionIndex"
-                                    :value="optionIndex">
+                                <option v-for="(option, optIndex) in optionsFrom" :key="optIndex" :value="optIndex">
                                     <span>{{ option.id }} </span>
                                     &nbsp;<span>{{ option.name }} </span>
                                     &nbsp; <span>{{ option.money }} </span>
@@ -77,7 +76,7 @@
                             <p class="textmuted h8">Purpose</p>
                             <select class="form-control" @change="purosetxt($event)">
                                 <option disabled selected value="">Select purpose (optional)</option>
-                                <option v-for="(p, purposeIndex)  in purpose" :key="purposeIndex" :value="optionIndex">
+                                <option v-for="(p, purposeIndex)  in purpose" :key="purposeIndex" :value="purposeIndex">
                                     <span>{{ p.text }} </span>
                                 </option>
                             </select>
@@ -86,24 +85,38 @@
                 </div>
                 <div class="col-12 flex justify-content-center mt-4">
                     <div class="col-12">
-                        <div class="btn btn-primary d-block h8 " @click="getData()">Transfer <span
-                                class="fas fa-dollar-sign ms-2"></span>to Own<span class="ms-3 fas fa-arrow-right"></span>
+                        <div class="bg-color-bluedark  align-middle text-center  p-2 rounded-lg font-weight-bold"
+                            @click="getData()"> <span><b>Transfer to Own</b></span>
+                            <!-- <span class="fas fa-dollar-sign ms-2"></span> -->
+
+                            <!-- <span class="ms-3 fas fa-arrow-right"></span> -->
                         </div>
                     </div>
 
                 </div>
             </div>
-
-
-
+        </div>
+    </div>
+    <div v-if="showPopup">
+        <div id="" class=" popupComfirmTransfer ">
+            <popUpComfirm @clickedbtn="transferComfirmPopup">
+            </popUpComfirm>
         </div>
     </div>
 </template>
+
+<script setup>
+
+import popUpComfirm from '../../components/popup/popup.vue'
+
+</script>
+
 <script>
 export default {
 
     data() {
         return {
+            showPopup: false,
             selectedFromAcc: '',
             selectedToAcc: '',
             selectedPurpose: '',
@@ -273,6 +286,13 @@ export default {
 
         },
         getData() {
+            var formTransferElement = document.getElementById("#formTransfer");
+            $("#formTransfer").className += 'blur'
+            // formTransferElement.classList.add("blur");
+            $("#formTransfer").find("*").prop('disabled', true);
+
+
+            this.showPopup = true;
 
             this.amountMoney = $("input[data-type='currency']").val()
             console.log("selectedFromAcc", this.selectedFromAcc)
@@ -280,7 +300,17 @@ export default {
             console.log("amountMoney", this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""))
 
             // $("input[data-type='currency']").val(this.amountMoney)
+        },
+        transferComfirmPopup(env) {
+            // alert(env)
+            if(env){
+
+            }else{
+                this.showPopup = false;
+            }
         }
+
+
 
     },
 
@@ -294,8 +324,31 @@ export default {
 </script>
 
 <style>
+.blur {
+    background: rgba(255, 255, 255, 0.2);
+    filter: blur(1px);
+    /* width: 50%; */
+}
+
+/* body:not(#unblurred) {
+    filter: blur(0.2px);
+} */
+
+/* #unblurred {
+    background:yellow; 
+    filter: blur(0px);
+} */
 p {
     margin: 0
+}
+
+
+
+.popupComfirmTransfer {
+    position: absolute;
+    left: 27%;
+    top: 22%;
+    z-index: 3;
 }
 
 /* .container {
@@ -304,6 +357,16 @@ p {
     background-color: #e8eaf6;
      padding: 35px;
 } */
+
+.bg-color-bluedark {
+    background: #0926A7;
+    color: #F1C40F;
+
+}
+
+.bg-color-bluedark:hover {
+    color: #fff;
+}
 
 .box-right {
     padding: 30px 25px;
