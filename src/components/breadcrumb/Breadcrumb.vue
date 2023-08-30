@@ -2,26 +2,29 @@
     <nav v-if="items && items.length" class="my-breadcrumbs">
         <ol>
             <li v-for="(item, itemIndex) in items" :key="itemIndex">
-
                 <router-link v-if="itemIndex !== items.length - 1" :to="{ name: item.url }" :title="item.name"
                     class="bc-link">
                     {{ item.name }}
                 </router-link>
 
-                <span v-else class="bc-name">{{ item.name }}</span>
+                <span v-else class="bc-name">{{ item.name }} / {{ $route.params.feature }}</span>
                 <span v-if="items[itemIndex + 1]" class="bc-separator">/</span>
             </li>
         </ol>
     </nav>
 </template>
     
-<script setup>
+<!-- <script setup>
 defineProps({
     items: {
         type: Array,
         required: true
     }
 })
+</script> -->
+
+<script>
+export default { props: ['items'] }
 </script>
 
 <style>
@@ -65,7 +68,7 @@ defineProps({
     margin: 0.3rem;
 }
 
-ol{
+ol {
     margin: 0px;
 }
 </style>

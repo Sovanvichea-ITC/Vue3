@@ -6,13 +6,13 @@ import TransferOwner from './TransferToOwner.vue'
 import TransferToOther from './TransferToOther.vue'
 import Recent from './Recent.vue'
 
-const myItems = [{
-  name: 'home',
-  url: 'Homepage'
-}, {
-  name: 'transfer',
-  url: 'Transfer'
-}]
+// const myItems = [{
+//   name: 'home',
+//   url: 'Homepage'
+// }, {
+//   name: 'transfer',
+//   url: 'Transfer'
+// }]
 </script>
 
 
@@ -23,9 +23,9 @@ const myItems = [{
     </div>
     <div class="row g-3">
       <div class="col-4 p-3 d-flex justify-content-center">
-        <router-link :to="{ name: 'Transfer', params: { feature: 'transfer_to_own' } }">
-          <div v-if="$route.params.feature == 'transfer_to_own'" class="button-function-feature selected-feature"
-            role="button">
+        <router-link :to="{ name: 'Transfer', params: { feature: 'Transfer_To_Own' } }">
+          <div v-if="$route.params.feature == 'Transfer_To_Own'" @click="getFeature('Transfer_To_Own')"
+            class="button-function-feature selected-feature" role="button">
             <!-- <div><img src="../../assets/svg/bill.svg"></div> -->
             <div class=""><span>Transfer to own</span></div>
           </div>
@@ -36,9 +36,9 @@ const myItems = [{
         </router-link>
       </div>
       <div class="col-4 p-3 d-flex justify-content-center">
-        <router-link :to="{ name: 'Transfer', params: { feature: 'transfer_to_other' } }">
-          <div v-if="$route.params.feature == 'transfer_to_other'" class="button-function-feature selected-feature"
-            role="button">
+        <router-link :to="{ name: 'Transfer', params: { feature: 'Transfer_To_Other' } }">
+          <div v-if="$route.params.feature == 'transfer_to_other'" @click="getFeature('Transfer_To_Other')"
+            class="button-function-feature selected-feature" role="button">
             <div><span>Transfer to other</span></div>
           </div>
           <div v-else class="button-function-feature" role="button">
@@ -47,8 +47,9 @@ const myItems = [{
         </router-link>
       </div>
       <div class="col-4 p-3 d-flex justify-content-center">
-        <router-link :to="{ name: 'Transfer', params: { feature: 'recent' } }">
-          <div v-if="$route.params.feature == 'recent'" class="button-function-feature selected-feature" role="button">
+        <router-link :to="{ name: 'Transfer', params: { feature: 'Recent' } }">
+          <div v-if="$route.params.feature == 'Recent'" @click="getFeature('Recent')"
+            class="button-function-feature selected-feature" role="button">
             <div><span>Recent</span></div>
           </div>
           <div v-else class="button-function-feature" role="button">
@@ -60,13 +61,13 @@ const myItems = [{
     </div>
 
 
-    <div v-if="$route.params.feature == 'transfer_to_own'" class="row px-4 mt-3">
+    <div v-if="$route.params.feature == 'Transfer_To_Own'" class="row px-4 mt-3">
       <TransferOwner></TransferOwner>
     </div>
-    <div v-else-if="$route.params.feature == 'transfer_to_other'" class="row px-4 mt-3">
+    <div v-else-if="$route.params.feature == 'Transfer_To_Other'" class="row px-4 mt-3">
       <TransferToOther></TransferToOther>
     </div>
-    <div v-else-if="$route.params.feature == 'recent'" class="row px-4 mt-3">
+    <div v-else-if="$route.params.feature == 'Recent'" class="row px-4 mt-3">
       <Recent></Recent>
     </div>
   </div>
@@ -76,12 +77,28 @@ const myItems = [{
 import router from '../../router/index.js';
 
 export default {
-  // data: () => ({}),
+  data: () => ({
+    myItems: [{
+      name: 'Home',
+      url: 'Homepage',
+    }, {
+      name: 'Transfer',
+      url: 'Transfer',
+    },]
+  }),
+  methods: {
+    getFeature(feature) {
+      this.myItems[1].params = feature
+      // this.myItems = this.myItems
+      // alert(feature)
+    }
+  },
   mounted() {
     // router.replace({ path: '/home/profile' })
-    // if (router.params)
-    //   router.push({ name: 'NotFound404' });
-
+    // if (this.$route.params.feature) {
+    //   this.myItems[1].params = 'Transfer To Other'
+    // }
+    // alert(this.$route.params.feature)
   }
 }
 </script>
