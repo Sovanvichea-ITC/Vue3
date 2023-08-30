@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-12 px-0">
+            <div class="col-6 px-0 mb-3">
                 <div class="box-right">
                     <div class="d-flex mb-2">
                         <h5>Tranfer to own account</h5>
@@ -54,31 +54,48 @@
 
                             <select class="form-control" @change="changeCurrencyTo($event)">
                                 <option disabled selected value="">Select Credit account</option>
-                                <option v-for="(option, optionIndex)  in optionsTo" :key="optionIndex" :value="optionIndex">
-                                    <span>{{ option.id }} </span>
-                                    &nbsp;<span>{{ option.name }} </span>
-                                    &nbsp; <span>{{ option.money }} </span>
-                                    <span>{{ option.type }} </span>
+                                <option v-for="(opt, optionIndex)  in optionsTo" :key="optionIndex" :value="optionIndex">
+                                    <span>{{ opt.id }} </span>
+                                    &nbsp;<span>{{ opt.name }} </span>
+                                    &nbsp; <span>{{ opt.money }} </span>
+                                    <span>{{ opt.type }} </span>
                                 </option>
 
                             </select>
 
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 mb-2">
                             <p class="textmuted h8">Amount</p>
                             <input class="form-control" type="text" name="currency-field" id="currency-field"
                                 pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="00.00">
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <p class="textmuted h8">Due on</p> <input class="form-control" type="text" placeholder="00.00">
+                        </div> -->
+
+                        <div class="col-12 mb-2">
+                            <p class="textmuted h8">Purpose</p>
+                            <select class="form-control" @change="purosetxt($event)">
+                                <option disabled selected value="">Select purpose (optional)</option>
+                                <option v-for="(p, purposeIndex)  in purpose" :key="purposeIndex" :value="optionIndex">
+                                    <span>{{ p.text }} </span>
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
+                <div class="col-12 flex justify-content-center mt-4">
+                    <div class="col-12">
+                        <div class="btn btn-primary d-block h8 " @click="getData()">Transfer <span
+                                class="fas fa-dollar-sign ms-2"></span>to Own<span class="ms-3 fas fa-arrow-right"></span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="btn btn-primary d-block h8" @click="getData()">PAY <span
-                    class="fas fa-dollar-sign ms-2"></span>1400<span class="ms-3 fas fa-arrow-right"></span>
-            </div>
+
+
         </div>
     </div>
 </template>
@@ -89,6 +106,7 @@ export default {
         return {
             selectedFromAcc: '',
             selectedToAcc: '',
+            selectedPurpose: '',
             currency: "KHR",
             amountMoney: '',
             optionsFrom: [
@@ -100,7 +118,12 @@ export default {
                 { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
                 { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
                 { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
-            ]
+            ],
+            purpose: [
+                { text: 'For buy something' },
+                { text: 'For Student ' },
+                { text: 'Other Bill' }
+            ],
         }
     },
 
@@ -135,6 +158,12 @@ export default {
             }
             console.log("changeCurrencyTo: ", event.target.value);
 
+        },
+        purosetxt(event) {
+            if (event.target.value) {
+                this.selectedPurpose = this.purose[event.target.value]
+                alert(this.selectedPurpose)
+            }
         },
         onChange(curr) {
             // var amount = '';
