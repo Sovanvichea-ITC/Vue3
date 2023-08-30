@@ -23,7 +23,6 @@
 
         </div>
 
-
         <!-- <h1>This is an home page</h1> -->
 
         <div class="feature">
@@ -50,7 +49,7 @@
             </div>
             <div class="row g-3">
                 <div class="col-4 p-3 d-flex justify-content-center">
-                    <router-link :to="{ name: 'Transfer' }">
+                    <router-link :to="{ name: 'Transfer', params: { feature: 'transfer_to_own' } }">
                         <div class="button-8" role="button">
                             <div><img src="../../assets/svg/transfer.svg"></div>
                             <div><span>Transfer</span></div>

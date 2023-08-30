@@ -1,6 +1,6 @@
 <template>
     <div id="formTransfer" class="col-md-12 col-12 ">
-        <div class="row flex justify-content-center">
+        <div class="row flex justify-content-center ">
             <!-- <div class="col-12 mb-4">
                 <div class="row box-right">
                     <div class="col-md-8 ps-0 ">
@@ -21,12 +21,10 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-6 px-0 mb-3" v-bind:class="{ blur: getBlur }">
+            <div class="col-6 px-0 mb-3 " v-bind:class="{ blur: getBlur }">
                 <div class=" box-right shadow-sm">
                     <div class=" d-flex mb-2">
                         <h5>Tranfer to own account</h5>
-                        <!-- <h1 class="fw-bold">Tranfer to own account</h1> -->
-                        <!-- <p class="ms-auto textmuted"><span class="fas fa-times"></span></p> -->
                     </div>
 
                     <div class="row">
@@ -42,7 +40,6 @@
                                     &nbsp; <span>{{ option.money }} </span>
                                     <span>{{ option.type }} </span>
                                 </option>
-
                             </select>
 
                         </div>
@@ -68,9 +65,6 @@
                             <input class="form-control" type="text" name="currency-field" id="currency-field"
                                 pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="00.00">
                         </div>
-                        <!-- <div class="col-6">
-                            <p class="textmuted h8">Due on</p> <input class="form-control" type="text" placeholder="00.00">
-                        </div> -->
 
                         <div class="col-12 mb-2">
                             <p class="textmuted h8">Purpose</p>
@@ -87,9 +81,6 @@
                     <div class="col-12 ">
                         <div class="bg-color-bluedark  align-middle text-center  p-2 rounded-lg shadow-sm font-weight-bold "
                             @click="getData()"> <span><b>Transfer to Own</b></span>
-                            <!-- <span class="fas fa-dollar-sign ms-2"></span> -->
-
-                            <!-- <span class="ms-3 fas fa-arrow-right"></span> -->
                         </div>
                     </div>
 
@@ -108,15 +99,12 @@
         <div id="" class="popupComfirmTransfer">
             <popUpTransfer @clickedbtn="popupTransfered"></popUpTransfer>
         </div>
-
-
     </div>
 </template>
 
 <script setup>
 
 import popUpComfirm from '../../components/popup/comfirm/popup.vue'
-
 import popUpTransfer from '../../components/popup/transfered/PopupTransfered.vue'
 
 

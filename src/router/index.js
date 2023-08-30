@@ -30,28 +30,28 @@ const router = createRouter({
 
 
     // Must Be auth
-,
+    ,
     {
       path: '/home',
-      children:[
-          {path: '', name: "Homepage", component: () => import('../views/home/Homepage.vue')},
-          {path: 'profile', name: "Profile", component: () => import('../views/profile/Profile.vue')},
-          {path: 'about', name: "About", component: () => import('../views/about/About.vue')},
-          {path: 'contact', name: "Contact",  component: () => import('../views/contact/Contact.vue')},
-          {path: 'language', name: "Language",  component: () => import('../views/language/Language.vue')},
-          {path: 'setting', name: "Setting",  component: () => import('../views/setting/Setting.vue')},
+      children: [
+        { path: '', name: "Homepage", component: () => import('../views/home/Homepage.vue') },
+        { path: 'profile', name: "Profile", component: () => import('../views/profile/Profile.vue') },
+        { path: 'about', name: "About", component: () => import('../views/about/About.vue') },
+        { path: 'contact', name: "Contact", component: () => import('../views/contact/Contact.vue') },
+        { path: 'language', name: "Language", component: () => import('../views/language/Language.vue') },
+        { path: 'setting', name: "Setting", component: () => import('../views/setting/Setting.vue') },
 
-          
-          // ( tranfer to own, tranfer to other, recent tranfer  )
 
-          {path: 'transfer', name: 'Transfer', component: () => import('../views/transfer/Transfer.vue')},
+        // ( tranfer to own, tranfer to other, recent tranfer  )
+
+        { path: 'transfer/:feature', name: 'Transfer', component: () => import('../views/transfer/Transfer.vue') },
       ],
-      name:"Home",
+      name: "Home",
       component: () => import('../views/HomePage.vue'),
-      
+
     },
 
-    
+
   ]
 
 })
