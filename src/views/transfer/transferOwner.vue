@@ -1,6 +1,6 @@
 <template>
-    <div id="formTransfer" class="col-md-12 col-12">
-        <div class="row">
+    <div id="formTransfer" class="col-md-12 col-12 ">
+        <div class="row ">
             <!-- <div class="col-12 mb-4">
                 <div class="row box-right">
                     <div class="col-md-8 ps-0 ">
@@ -21,9 +21,9 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-6 px-0 mb-3">
-                <div class="box-right">
-                    <div class="d-flex mb-2">
+            <div class="col-6 px-0 mb-3 " v-bind:class="{ blur: getBlur }">
+                <div class=" box-right ">
+                    <div class=" d-flex mb-2">
                         <h5>Tranfer to own account</h5>
                         <!-- <h1 class="fw-bold">Tranfer to own account</h1> -->
                         <!-- <p class="ms-auto textmuted"><span class="fas fa-times"></span></p> -->
@@ -122,6 +122,7 @@ export default {
             selectedPurpose: '',
             currency: "KHR",
             amountMoney: '',
+            getBlur: false,
             optionsFrom: [
                 { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
                 { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
@@ -286,11 +287,11 @@ export default {
 
         },
         getData() {
-            var formTransferElement = document.getElementById("#formTransfer");
-            $("#formTransfer").className += 'blur'
+            // var formTransferElement = document.getElementById("#formTransfer");
+            // $("#formTransfer").className += 'blur'
             // formTransferElement.classList.add("blur");
+            this.getBlur = true;
             $("#formTransfer").find("*").prop('disabled', true);
-
 
             this.showPopup = true;
 
@@ -303,10 +304,13 @@ export default {
         },
         transferComfirmPopup(env) {
             // alert(env)
-            if(env){
+            if (env) {
 
-            }else{
+            } else {
+                $("#formTransfer").find("*").prop('disabled', false);
+                this.getBlur = false;
                 this.showPopup = false;
+                // this.getBlur = true;
             }
         }
 
