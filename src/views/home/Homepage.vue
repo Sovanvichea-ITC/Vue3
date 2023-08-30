@@ -1,7 +1,6 @@
 
 
 <template>
-
     <div class="homepage ">
         <div class="wrapper ">
             <div class="card-d bg-card-d-1 ">
@@ -165,8 +164,8 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 350px;
-    height: 150px;
+    width: 15em;
+    height: 10em;
     background-color: #ffffff;
     border-radius: 5px;
     border: 1px solid #7aa7c7;

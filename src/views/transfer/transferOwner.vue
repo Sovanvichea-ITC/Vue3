@@ -1,6 +1,6 @@
 <template>
     <div id="formTransfer" class="col-md-12 col-12 ">
-        <div class="row ">
+        <div class="row flex justify-content-center">
             <!-- <div class="col-12 mb-4">
                 <div class="row box-right">
                     <div class="col-md-8 ps-0 ">
@@ -97,16 +97,16 @@
             </div>
         </div>
     </div>
-    <div v-if="showPopupComfirm">
+    <div v-if="showPopupComfirm" style="position: static;">
         <div id="" class="popupComfirmTransfer">
             <popUpComfirm @clickedbtn="transferComfirmPopup">
             </popUpComfirm>
         </div>
     </div>
 
-    <div v-if="showPopupTransfered">
+    <div v-if="showPopupTransfered" style="position: static;">
         <div id="" class="popupComfirmTransfer">
-            <popUpTransfer></popUpTransfer>
+            <popUpTransfer @clickedbtn="popupTransfered"></popUpTransfer>
         </div>
 
 
@@ -317,7 +317,7 @@ export default {
         transferComfirmPopup(env) {
             // alert(env)
             if (env) {
-                // this.showPopupComfirm = false;
+                this.showPopupComfirm = false;
                 this.showPopupTransfered = true;
             } else {
                 $("#formTransfer").find("*").prop('disabled', false);
@@ -325,6 +325,11 @@ export default {
                 this.showPopupComfirm = false;
                 // this.getBlur = true;
             }
+        },
+        popupTransfered() {
+            this.showPopupTransfered = false;
+            $("#formTransfer").find("*").prop('disabled', false);
+            this.getBlur = false;
         }
 
 
@@ -362,13 +367,12 @@ p {
 
 
 .popupComfirmTransfer {
-    position: absolute;
-    left: 27%;
-    top: 22%;
+    position: relative;
+    left: 0%;
+    top: -94%;
     z-index: 3;
-
+    margin: auto;
     transition-duration: 10s, 30s, 230ms;
-
 }
 
 /* .container {
