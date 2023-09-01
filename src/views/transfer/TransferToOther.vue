@@ -29,7 +29,7 @@
 
                             <p class="textmuted h8">To</p>
 
-                            <select class="form-control" @change="changeCurrencyTo($event)">
+                            <!-- <select class="form-control" @change="changeCurrencyTo($event)">
                                 <option disabled selected value="">Select Credit account</option>
                                 <option v-for="(opt, optionIndex)  in optionsTo" :key="optionIndex" :value="optionIndex">
                                     <span>{{ opt.id }} </span>
@@ -38,7 +38,19 @@
                                     <span>{{ opt.type }} </span>
                                 </option>
 
-                            </select>
+                            </select> -->
+
+                            <input class="form-control" @change="changeCurrencyTo($event)" placeholder="Account number">
+                            <!-- <option disabled selected value="">Select Credit account</option>
+                            <option v-for="(opt, optionIndex)  in optionsTo" :key="optionIndex" :value="optionIndex">
+                                <span>{{ opt.id }} </span>
+                                &nbsp;<span>{{ opt.name }} </span>
+                                &nbsp; <span>{{ opt.money }} </span>
+                                <span>{{ opt.type }} </span>
+                            </option> -->
+
+
+
 
                         </div>
                         <div class="col-12 mb-2">

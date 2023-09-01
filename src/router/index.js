@@ -13,20 +13,31 @@ const router = createRouter({
     {
       path: '/',
       name: 'guest',
-      component: HomeView
+      component: () => import('../views/auth/Auth.vue')
     },
 
     {
-      path: '/auth/login',
-      name: 'Login',
-      component: () => import('../views/auth/Login.vue')
+      path: '/auth',
+      children: [
+        { path: 'login', name: "Login", component: () => import('../views/auth/view/Login.vue') },
+        { path: 'register', name: "Register", component: () => import('../views/auth/view/Register.vue') },
+
+      ],
+      name: 'Auth',
+      component: () => import('../views/auth/Auth.vue')
     },
 
-    {
-      path: '/auth/register',
-      name: 'Register',
-      component: () => import('../views/auth/Register.vue')
-    },
+    // {
+    //   path: '/auth/login',
+    //   name: 'Login',
+    //   component: () => import('../views/auth/Login.vue')
+    // },
+
+    // {
+    //   path: '/auth/register',
+    //   name: 'Register',
+    //   component: () => import('../views/auth/Register.vue')
+    // },
 
 
     // Must Be auth
@@ -58,7 +69,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   // const me = await authApi.getMe();
-  const me = "true"
+  const me = ""
 
   let isAuthenticated = true;
   if (!me) {
@@ -70,6 +81,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.name.includes('Profile') && !isAuthenticated) next({ name: 'guest' })
   if (to.name.includes('Contact') && !isAuthenticated) next({ name: 'guest' })
   if (to.name.includes('About') && !isAuthenticated) next({ name: 'guest' })
+  if (to.name.includes('Transfer') && !isAuthenticated) next({ name: 'guest' })
   if (to.name.includes('guest') && isAuthenticated) next({ name: 'Homepage' })
 
   if ((to.name.includes('Login') || to.name.includes('Register')) && isAuthenticated) next({ name: 'Home' })
