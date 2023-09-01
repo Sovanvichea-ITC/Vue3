@@ -37,7 +37,7 @@ import Recent from './Recent.vue'
       </div>
       <div class="col-4 p-3 d-flex justify-content-center">
         <router-link :to="{ name: 'Transfer', params: { feature: 'Transfer_To_Other' } }">
-          <div v-if="$route.params.feature == 'transfer_to_other'" @click="getFeature('Transfer_To_Other')"
+          <div v-if="$route.params.feature == 'Transfer_To_Other'" @click="getFeature('Transfer_To_Other')"
             class="button-function-feature selected-feature" role="button">
             <div><span>Transfer to other</span></div>
           </div>
@@ -110,6 +110,11 @@ export default {
   justify-content: flex-start;
 } */
 
+.blur {
+  background: rgba(181, 187, 255, 0.16);
+  filter: blur(8px);
+
+}
 
 .selected-feature {
   background-color: #b3d3ea;

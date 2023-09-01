@@ -30,7 +30,7 @@
                 <div class="col-4 p-3 d-flex justify-content-center">
                     <div class="button-8" role="button">
                         <div><img src="../../assets/svg/account.svg"></div>
-                        <div><span>Account</span></div>
+                        <div><span>Accounts</span></div>
                     </div>
                 </div>
                 <div class="col-4 p-3 d-flex justify-content-center">
@@ -43,7 +43,7 @@
                 <div class="col-4 p-3 d-flex justify-content-center">
                     <div class="button-8" role="button">
                         <div><img src="../../assets/svg/bill.svg"></div>
-                        <div><span>Bill</span></div>
+                        <div><span>Bill Pays</span></div>
                     </div>
                 </div>
             </div>
@@ -59,14 +59,14 @@
                 <div class="col-4 p-3 d-flex justify-content-center">
                     <div class="button-8" role="button">
                         <div><img src="../../assets/svg/schdule.svg"></div>
-                        <div><span>Schdule</span></div>
+                        <div><span>Schdule Transfers</span></div>
                     </div>
                 </div>
 
                 <div class="col-4 p-3 d-flex justify-content-center">
                     <div class="button-8" role="button">
                         <div><img src="../../assets/svg/mobile.svg"></div>
-                        <div><span>Mobile</span></div>
+                        <div><span>Mobile Top-up</span></div>
                     </div>
                 </div>
             </div>

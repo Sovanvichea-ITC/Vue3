@@ -316,11 +316,11 @@ export default {
 </script>
 
 <style>
-.blur {
+/* .blur {
     background: rgba(255, 255, 255, 0.2);
     filter: blur(1px);
-    /* width: 50%; */
-}
+    
+} */
 
 /* body:not(#unblurred) {
     filter: blur(0.2px);
