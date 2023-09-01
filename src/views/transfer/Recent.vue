@@ -15,24 +15,23 @@
 
 
 
-                            <p class="h1 fw-bold d-flex"> <span
-                                    class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>
+                            <p class="h1 fw-bold d-flex"> <span class="  textmuted pe-1 h6 align-text-top mt-1"></span>
                                 -{{ tran.amount }}
                                 <span class="textmuted">&nbsp;{{ tran.type }}</span>
                             </p>
                             <p class="ms-3 px-2 bg-red">Transaction Hash: {{ tran.hash }}</p>
                         </div>
                         <div class="col-md-4">
-                            <p class=""> Transaction Date:<span class="fas fa-circle pe-2 p-blue"></span><br>
+                            <p class=""> Transaction Date:<span class="pe-2 p-blue"></span><br>
                                 <span class="p-blue">{{ tran.date }}</span>
                             </p>
-                            <p class="fw-bold mb-3"><span class="fas fa-dollar-sign pe-1">
+                            <p class="fw-bold mb-3"><span class=" pe-1">
 
                                 </span>
                                 <!-- <span class="textmuted">.50</span> -->
                             </p>
-                            <p class="p-org "><span class="fas fa-circle pe-2"></span>Purpose: </p>
-                            <p class="fw-bold"><span class="fas fa-dollar-sign pe-1"></span>
+                            <p class="p-org "><span class=" pe-2"></span>Purpose: </p>
+                            <p class="fw-bold"><span class=" pe-1"></span>
                                 <span class="text-break">{{ tran.purose }}</span>
                                 <!-- <span class="textmuted">.00</span> -->
                             </p>
@@ -51,24 +50,23 @@
                                 <b> {{ tran.sendName }}</b> | <b> {{ tran.sendId }}</b>
                             </p>
 
-                            <p class="h1 fw-bold d-flex"> <span
-                                    class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>
+                            <p class="h1 fw-bold d-flex"> <span class="  textmuted pe-1 h6 align-text-top mt-1"></span>
                                 {{ tran.amount }}
                                 <span class="textmuted">&nbsp;{{ tran.type }}</span>
                             </p>
                             <p class="ms-3 px-2 bg-green">Transaction Hash: {{ tran.hash }}</p>
                         </div>
                         <div class="col-md-4">
-                            <p class=""> Transaction Date:<span class="fas fa-circle pe-2 p-blue"></span><br>
+                            <p class=""> Transaction Date:<span class=" pe-2 p-blue"></span><br>
                                 <span class="p-blue">{{ tran.date }}</span>
                             </p>
-                            <p class="fw-bold mb-3"><span class="fas fa-dollar-sign pe-1">
+                            <p class="fw-bold mb-3"><span class=" pe-1">
 
                                 </span>
                                 <!-- <span class="textmuted">.50</span> -->
                             </p>
-                            <p class="p-org"><span class="fas fa-circle pe-2"></span>Purpose: </p>
-                            <p class="fw-bold text-break"><span class="fas fa-dollar-sign pe-1"></span>
+                            <p class="p-org"><span class=" pe-2"></span>Purpose: </p>
+                            <p class="fw-bold text-break"><span class=" pe-1"></span>
                                 <span class="text-break">{{ tran.purose }}</span>
                                 <!-- <span class="textmuted">.00</span> -->
                             </p>
@@ -289,10 +287,6 @@ p {
 .p-blue {
     font-size: 14px;
     color: #1976d2
-}
-
-.fas.fa-circle {
-    font-size: 12px
 }
 
 .p-org {

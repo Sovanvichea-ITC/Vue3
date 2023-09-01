@@ -1,6 +1,6 @@
 <script setup>
 
-import Breadcrumbs from '../../components/breadcrumb/Breadcrumb.vue'
+import Breadcrumbs from '@components/breadcrumb/Breadcrumb.vue'
 // import TransferOwner from './TransferOwner.vue'
 import TransferOwner from './TransferToOwner.vue'
 import TransferToOther from './TransferToOther.vue'
@@ -18,7 +18,7 @@ import Recent from './Recent.vue'
 
 <template>
   <div class="transfer">
-    <div class=" row breadcrumbs col-12 px-4 mb-4">
+    <div class=" row breadcrumbs col-10 pr-4 mb-4 ml-56">
       <Breadcrumbs :items="myItems" />
     </div>
     <div class="row g-3">
@@ -126,7 +126,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 18rem;
   height: 50px;
   /* background-color: #ffffff; */
   border-radius: 5px;

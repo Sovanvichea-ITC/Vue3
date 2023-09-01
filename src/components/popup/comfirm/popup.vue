@@ -4,31 +4,31 @@
             <div class="icon flex justify-content-center ">
                 <img src="../../../assets/svg/wallet.svg">
             </div>
-            <div class="text-decri flex justify-content-center mb-2">
+            <div class="text-decri flex justify-content-center mb-2.5">
                 <h6><b>You will transfer</b></h6>
                 <!-- #F1C40F -->
             </div>
-            <div class="money flex justify-content-center mb-3 ">
+            <div class="money flex justify-content-center mb-3.5 ">
                 <h3><b>{{ confirmTransfer.amountMoney }} {{ confirmTransfer.type }}</b></h3>
 
             </div>
-            <div class="text flex justify-content-center mb-2">
+            <div class="text flex justify-content-center mb-2.5">
                 <h6><b>To</b></h6>
             </div>
-            <div class="flex justify-content-center text-color-name mb-2">
+            <div class="flex justify-content-center text-color-name mb-2.5">
                 <h5><b><b> {{ confirmTransfer.TransferName }}</b></b></h5>
 
             </div>
-            <div class="text-name flex justify-content-center mb-2">
+            <div class="text-name flex justify-content-center mb-2.5">
                 <h6><b> {{ confirmTransfer.type }} {{ confirmTransfer.accountID }}</b></h6>
             </div>
             <div class="text flex justify-content-center text-secondary ">
                 Please verify the information above.
             </div>
 
-            <div class="bg-color-btn p-2 rounded-lg flex justify-content-center mt-3 font-weight-bold"
+            <div class="bg-color-btn p-2 rounded-lg flex justify-content-center mt-3.5 font-weight-bold"
                 @click="clickedbtn(true)">COMFIRM</div>
-            <div class="bg-color-btn-cancle p-2 rounded-lg flex justify-content-center mt-3 font-weight-bold"
+            <div class="bg-color-btn-cancle p-2 rounded-lg flex justify-content-center mt-3.5 font-weight-bold"
                 @click="clickedbtn(false)">CANCLE</div>
         </div>
     </div>

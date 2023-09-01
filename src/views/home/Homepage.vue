@@ -13,12 +13,12 @@
 
             <div class="card-d bg-card-d border-left-USD ">
                 <span>Total in USD </span><br>
-                <h3 class="fs-3"><b>300,330,332 USD</b></h3>
+                <h3 class="text-3xl"><b>300,330,332 USD</b></h3>
             </div>
 
             <div class="card-d bg-card-d border-left-KHR ">
                 <span>Total in KHR </span><br>
-                <h3 class="fs-3"><b>300,330,332 KHR</b></h3>
+                <h3 class="text-3xl"><b>300,330,332 KHR</b></h3>
             </div>
 
         </div>
