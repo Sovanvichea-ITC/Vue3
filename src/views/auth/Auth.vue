@@ -6,10 +6,11 @@
           <img :src="image" alt="FTB image" />
         </div>
         <div class="my-10">
-          <button class="outline text-white outline-white outline-none rounded-md px-10 py-5">
-            <a href="https://ftb.com.kh/en/" target="_blank">
-              Click to know more!</a>
-          </button>
+          <a href="https://ftb.com.kh/en/" target="_blank">
+            <button class="outline text-white outline-white outline-none rounded-md px-10 py-5">
+
+              Click to know more!
+            </button></a>
         </div>
       </div>
       <div class="bg-white rounded-md text-center mr-20">
