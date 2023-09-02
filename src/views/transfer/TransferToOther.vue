@@ -63,7 +63,7 @@
                             <p class="textmuted h8">Purpose</p>
                             <select class="form-control" @change="purosetxt($event)">
                                 <option disabled selected value="">Select purpose (optional)</option>
-                                <option v-for="(p, purposeIndex)  in purpose" :key="purposeIndex" :value="purposeIndex">
+                                <option v-for="(p, purposeIndex)  in purposes" :key="purposeIndex" :value="purposeIndex">
                                     <span>{{ p.text }} </span>
                                 </option>
                             </select>
@@ -96,7 +96,7 @@
 
     <div v-if="showPopupTransfered" style="position: static;">
         <div id="" class="popupComfirmTransfer">
-            <popUpTransfer @clickedbtn="popupTransfered" :transferedInfo:="transferedInfo"></popUpTransfer>
+            <popUpTransfer @clickedbtn="popupTransfered" :transferedInfo="transferedInfo"></popUpTransfer>
         </div>
     </div>
 </template>
@@ -129,16 +129,17 @@ export default {
             amountMoney: '',
             getBlur: false,
             optionsFrom: [
-                { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
-                { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
-                { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
+
+                { id: '0001 343 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
+                { id: '0001 999 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199555.06', type: 'USD' },
+                { id: '0001 333 666', username: 'YANN SOVANVICHEA', name: 'Savings Account', money: '212223.08', type: 'USD' }
             ],
             optionsTo: [
-                { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
-                { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
-                { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
+                { id: '0001 343 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
+                { id: '0001 999 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199555.06', type: 'USD' },
+                { id: '0001 333 666', username: 'YANN SOVANVICHEA', name: 'Savings Account', money: '212223.08', type: 'USD' }
             ],
-            purpose: [
+            purposes: [
                 { text: 'For buy something' },
                 { text: 'For Student ' },
                 { text: 'Other Bill' }
@@ -147,7 +148,7 @@ export default {
     },
 
     mounted() {
-        this.infoTransferComfirm = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendToAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
+        // this.infoTransferComfirm = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendToAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
 
         console.log("selectedFromAcc", this.selectedFromAcc)
         console.log("selectedToAcc", this.selectedToAcc)
@@ -176,9 +177,13 @@ export default {
             // alert() 
         },
         changeCurrencyTo(event) {
+            // get account
             // if (event.target.value) {
             //     this.selectedToAcc = this.optionsTo[event.target.value]
             this.selectedToAcc = event.target.value;
+            this.selectedToAcc = { id: '0001 333 666', username: 'YANN SOVANVICHEA', name: 'Savings Account', money: '212223.08', type: 'USD' };
+
+
             // }
             // search acc
 
@@ -187,8 +192,8 @@ export default {
         },
         purosetxt(event) {
             if (event.target.value) {
-                this.selectedPurpose = this.purose[event.target.value]
-                alert(this.selectedPurpose)
+                this.selectedPurpose = this.purposes[event.target.value].text
+                // alert(this.selectedPurpose)
             }
         },
         onChange(curr) {
@@ -311,11 +316,12 @@ export default {
             this.amountMoney = $("input[data-type='currency']").val()
 
 
-            this.infoTransferComfirm = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendToAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
 
             console.log("selectedFromAcc", this.selectedFromAcc)
             console.log("selectedToAcc", this.selectedToAcc)
             console.log("amountMoney", this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""))
+            // Pin
+            this.infoTransferComfirm = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendToAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc.username }
 
             // $("input[data-type='currency']").val(this.amountMoney)
         },
@@ -324,6 +330,9 @@ export default {
             if (env) {
                 this.showpopupComfirmPin = false;
                 this.showPopupTransfered = true;
+
+                this.transferedInfo = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendFromAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
+
             } else {
                 this.showpopupComfirmPin = false;
                 // alert(this.showpopupComfirmPin)
@@ -338,6 +347,8 @@ export default {
                 // this.popupComfirmPin = true;
                 this.showPopupComfirm = false;
 
+                this.transferedInfo = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendFromAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
+
             } else {
                 $("#formTransfer").find("*").prop('disabled', false);
 
@@ -350,6 +361,8 @@ export default {
             this.showPopupTransfered = false;
             $("#formTransfer").find("*").prop('disabled', false);
             this.getBlur = false;
+
+
         }
 
 

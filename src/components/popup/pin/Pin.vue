@@ -176,8 +176,7 @@ export default {
         // data: { amountMoney: 100, type: 'USD', nameRecive: 'YANN Sovanvichea' },
         this.data.amountMoney = this.infoTransfer.amountMoney;
         this.data.type = this.infoTransfer.sendToAcc.type;
-        this.data.nameRecive = this.infoTransfer.reciveAcc.name;
-
+        this.data.nameRecive = this.infoTransfer.reciveAcc;
 
 
 
