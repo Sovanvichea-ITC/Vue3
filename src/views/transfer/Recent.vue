@@ -4,7 +4,7 @@
             <div v-for="( tran, i ) in  transfereds  " :key="i">
                 <div v-if="tran.transaction == 'tranferred'" class="col-12 mb-4" @click="popupDetailFun(true)">
                     <div class="row box-right bg-white shadow">
-                        <div class="col-md-8 ps-0 ">
+                        <div class="col-md-8 ps-0">
                             <p class="ps-3 textmuted fw-bold h6 mb-0">Transfered To <b> {{ tran.receivedName }}</b> |
                                 <b> {{ tran.receivedID }}</b>
                                 <!-- Reciever <b> {{ tran.sendName }}</b> -->
@@ -84,7 +84,7 @@
 
 <script setup>
 
-import PopupDetail from '../../components/popup/recent/PopupDetail.vue'
+import PopupDetail from '@components/popup/recent/PopupDetail.vue'
 
 </script>
 
@@ -219,7 +219,8 @@ export default {
     filter: blur(0px);
 } */
 p {
-    margin: 0
+    margin: 0;
+
 }
 
 

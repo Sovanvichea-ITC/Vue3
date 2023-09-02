@@ -73,7 +73,7 @@
                 <div class="col-12 flex justify-content-center mt-4">
                     <div class="col-12 ">
                         <div class="bg-color-bluedark  align-middle text-center  p-2 rounded-lg shadow-sm font-weight-bold "
-                            @click="getData()"> <span><b>Transfer to Own</b></span>
+                            @click="getData()"> <span><b>Transfer to Other</b></span>
                         </div>
                     </div>
 
@@ -88,18 +88,26 @@
         </div>
     </div>
 
+    <div v-if="showpopupComfirmPin" style="position: static;">
+        <div class="popupComfirmPin">
+            <ComfirmPin @comfirmedPin="comfirPin" :infoTransfer="infoTransferComfirm"></ComfirmPin>
+        </div>
+    </div>
+
     <div v-if="showPopupTransfered" style="position: static;">
         <div id="" class="popupComfirmTransfer">
-            <popUpTransfer @clickedbtn="popupTransfered"></popUpTransfer>
+            <popUpTransfer @clickedbtn="popupTransfered" :transferedInfo:="transferedInfo"></popUpTransfer>
         </div>
     </div>
 </template>
 
 <script setup>
 
-import popUpComfirm from '../../components/popup/comfirm/popup.vue'
+import popUpTransfer from '@components/popup/transfered/PopupTransfered.vue'
+import popUpComfirm from '@components/popup/pin/Pin.vue'
 
-import popUpTransfer from '../../components/popup/transfered/PopupTransfered.vue'
+import ComfirmPin from '@components/popup/pin/Pin.vue'
+
 
 
 </script>
@@ -109,8 +117,11 @@ export default {
 
     data() {
         return {
+            showpopupComfirmPin: false,
             showPopupComfirm: false,
             showPopupTransfered: false,
+            infoTransferComfirm: {},
+            transferedInfo: {},
             selectedFromAcc: '',
             selectedToAcc: '',
             selectedPurpose: '',
@@ -136,6 +147,11 @@ export default {
     },
 
     mounted() {
+        this.infoTransferComfirm = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendToAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
+
+        console.log("selectedFromAcc", this.selectedFromAcc)
+        console.log("selectedToAcc", this.selectedToAcc)
+        console.log("amountMoney", this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""))
 
     },
     watch: {
@@ -160,10 +176,12 @@ export default {
             // alert() 
         },
         changeCurrencyTo(event) {
-            if (event.target.value) {
-                this.selectedToAcc = this.optionsTo[event.target.value]
-                this.currency = this.selectedToAcc.type;
-            }
+            // if (event.target.value) {
+            //     this.selectedToAcc = this.optionsTo[event.target.value]
+            this.selectedToAcc = event.target.value;
+            // }
+            // search acc
+
             console.log("changeCurrencyTo: ", event.target.value);
 
         },
@@ -287,22 +305,42 @@ export default {
             this.getBlur = true;
             $("#formTransfer").find("*").prop('disabled', true);
 
-            this.showPopupComfirm = true;
+            this.showpopupComfirmPin = true;
+
 
             this.amountMoney = $("input[data-type='currency']").val()
+
+
+            this.infoTransferComfirm = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendToAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
+
             console.log("selectedFromAcc", this.selectedFromAcc)
             console.log("selectedToAcc", this.selectedToAcc)
             console.log("amountMoney", this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""))
 
             // $("input[data-type='currency']").val(this.amountMoney)
         },
+        comfirPin(env) {
+            // alert(env)
+            if (env) {
+                this.showpopupComfirmPin = false;
+                this.showPopupTransfered = true;
+            } else {
+                this.showpopupComfirmPin = false;
+                // alert(this.showpopupComfirmPin)
+                $("#formTransfer").find("*").prop('disabled', false);
+                this.getBlur = false;
+            }
+        }
+        ,
         transferComfirmPopup(env) {
             // alert(env)
             if (env) {
+                // this.popupComfirmPin = true;
                 this.showPopupComfirm = false;
-                this.showPopupTransfered = true;
+
             } else {
                 $("#formTransfer").find("*").prop('disabled', false);
+
                 this.getBlur = false;
                 this.showPopupComfirm = false;
                 // this.getBlur = true;
@@ -328,20 +366,15 @@ export default {
 </script>
 
 <style>
-/* .blur {
-    background: rgba(255, 255, 255, 0.2);
-    filter: blur(1px);
-    
-} */
+.popupComfirmPin {
+    position: relative;
+    left: 0%;
+    top: -80%;
+    z-index: 3;
+    margin: auto;
+    transition-duration: 10s, 30s, 230ms;
+}
 
-/* body:not(#unblurred) {
-    filter: blur(0.2px);
-} */
-
-/* #unblurred {
-    background:yellow; 
-    filter: blur(0px);
-} */
 p {
     margin: 0
 }

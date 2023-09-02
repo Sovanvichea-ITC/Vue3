@@ -70,7 +70,7 @@
                             <p class="textmuted h8">Purpose</p>
                             <select class="form-control" @change="purosetxt($event)">
                                 <option disabled selected value="">Select purpose (optional)</option>
-                                <option v-for="(p, purposeIndex)  in purpose" :key="purposeIndex" :value="purposeIndex">
+                                <option v-for="(p, purposeIndex)  in purposes" :key="purposeIndex" :value="purposeIndex">
                                     <span>{{ p.text }} </span>
                                 </option>
                             </select>
@@ -94,18 +94,25 @@
             </popUpComfirm>
         </div>
     </div>
+    <!-- <div v-if="showpopupComfirmPin" style="position: static;">
+        <div class="popupComfirmPin">
+            <ComfirmPin @comfirmedPin="comfirPin" :infoTransfer="infoTransferComfirm"></ComfirmPin>
+        </div>
+    </div> -->
+
 
     <div v-if="showPopupTransfered" style="position: static;">
         <div id="" class="popupComfirmTransfer">
-            <popUpTransfer @clickedbtn="popupTransfered"></popUpTransfer>
+            <popUpTransfer @clickedbtn="popupTransfered" :transferedInfo="transferedInfo"></popUpTransfer>
         </div>
     </div>
 </template>
 
 <script setup>
 
-import popUpComfirm from '../../components/popup/comfirm/popup.vue'
-import popUpTransfer from '../../components/popup/transfered/PopupTransfered.vue'
+import popUpComfirm from '@components/popup/comfirm/popup.vue'
+import popUpTransfer from '@components/popup/transfered/PopupTransfered.vue'
+import ComfirmPin from '@components/popup/pin/Pin.vue'
 
 
 </script>
@@ -115,8 +122,11 @@ export default {
 
     data() {
         return {
+            // showpopupComfirmPin: false,
             showPopupComfirm: false,
             showPopupTransfered: false,
+            infoTransferComfirm: {},
+            transferedInfo: {},
             selectedFromAcc: '',
             selectedToAcc: '',
             selectedPurpose: '',
@@ -124,16 +134,16 @@ export default {
             amountMoney: '',
             getBlur: false,
             optionsFrom: [
-                { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
-                { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
-                { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
+                { id: '0001 343 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
+                { id: '0001 999 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199555.06', type: 'USD' },
+                { id: '0001 333 666', username: 'YANN SOVANVICHEA', name: 'Savings Account', money: '212223.08', type: 'USD' }
             ],
             optionsTo: [
-                { id: '0001 343 336', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
-                { id: '0001 999 336', name: 'Wallet Account', money: '199555.06', type: 'USD' },
-                { id: '0001 333 666', name: 'Savings Account', money: '212223.08', type: 'USD' }
+                { id: '0001 343 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199999.00', type: 'KHR' },
+                { id: '0001 999 336', username: 'YANN SOVANVICHEA', name: 'Wallet Account', money: '199555.06', type: 'USD' },
+                { id: '0001 333 666', username: 'YANN SOVANVICHEA', name: 'Savings Account', money: '212223.08', type: 'USD' }
             ],
-            purpose: [
+            purposes: [
                 { text: 'For buy something' },
                 { text: 'For Student ' },
                 { text: 'Other Bill' }
@@ -175,8 +185,9 @@ export default {
         },
         purosetxt(event) {
             if (event.target.value) {
-                this.selectedPurpose = this.purose[event.target.value]
-                alert(this.selectedPurpose)
+                this.selectedPurpose = this.purposes[event.target.value].text
+                console.log(this.selectedPurpose)
+                // alert(this.selectedPurpose)
             }
         },
         onChange(curr) {
@@ -290,30 +301,54 @@ export default {
             // var formTransferElement = document.getElementById("#formTransfer");
             // $("#formTransfer").className += 'blur'
             // formTransferElement.classList.add("blur");
-            this.getBlur = true;
-            $("#formTransfer").find("*").prop('disabled', true);
 
-            this.showPopupComfirm = true;
 
-            this.amountMoney = $("input[data-type='currency']").val()
             console.log("selectedFromAcc", this.selectedFromAcc)
             console.log("selectedToAcc", this.selectedToAcc)
             console.log("amountMoney", this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""))
+
+
+            if (this.amountMoney == "" && this.selectedFromAcc == "" && this.selectedToAcc == "") {
+
+            } else {
+                this.getBlur = true;
+                $("#formTransfer").find("*").prop('disabled', true);
+                this.showPopupTransfered = true;
+                this.amountMoney = $("input[data-type='currency']").val()
+
+                this.transferedInfo = { amountMoney: this.amountMoney.replace('USD', "").replace('KHR', "").replace(',', ""), sendFromAcc: this.selectedFromAcc, reciveAcc: this.selectedToAcc }
+
+            }
 
             // $("input[data-type='currency']").val(this.amountMoney)
         },
         transferComfirmPopup(env) {
             // alert(env)
             if (env) {
+                // this.popupComfirmPin = true;
                 this.showPopupComfirm = false;
-                this.showPopupTransfered = true;
+
             } else {
                 $("#formTransfer").find("*").prop('disabled', false);
+
                 this.getBlur = false;
                 this.showPopupComfirm = false;
                 // this.getBlur = true;
             }
         },
+        // comfirPin(env) {
+        //     // alert(env)
+        //     if (env) {
+        //         this.showpopupComfirmPin = false;
+        //         this.showPopupTransfered = true;
+        //     } else {
+        //         this.showpopupComfirmPin = false;
+        //         // alert(this.showpopupComfirmPin)
+        //         $("#formTransfer").find("*").prop('disabled', false);
+        //         this.getBlur = false;
+
+        //     }
+        // },
         popupTransfered() {
             this.showPopupTransfered = false;
             $("#formTransfer").find("*").prop('disabled', false);
@@ -334,24 +369,19 @@ export default {
 </script>
 
 <style>
-/* .blur {
-    background: rgb(202, 0, 0);
-    filter: blur(100px);
-    
-} */
-
-/* body:not(#unblurred) {
-    filter: blur(0.2px);
-} */
-
-/* #unblurred {
-    background:yellow; 
-    filter: blur(0px);
-} */
 p {
     margin: 0
 }
 
+
+.popupComfirmPin {
+    position: relative;
+    left: 0%;
+    top: -80%;
+    z-index: 3;
+    margin: auto;
+    transition-duration: 10s, 30s, 230ms;
+}
 
 
 .popupComfirmTransfer {

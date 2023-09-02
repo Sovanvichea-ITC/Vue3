@@ -69,7 +69,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   // const me = await authApi.getMe();
-  const me = "sdd"
+  const me = "d"
 
   let isAuthenticated = true;
   if (!me) {

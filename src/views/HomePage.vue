@@ -54,41 +54,47 @@ const myItems = [
 <template>
     <div class="container">
         <div class="">
-            <nav class="sidebar locked">
-                <router-link :to="{ name: 'Profile' }">
+            <div class="col-12">
+                <nav class="sidebar locked ">
+                    <!-- <router-link :to="{ name: 'Profile' }"> -->
                     <div class="logo_items flex">
-                        <span class="nav_image">
+
+                        <span class="nav_image cursor-pointer" @click="gotoProfile()">
                             <img :src=user.img alt="logo_img" />
                         </span>
-                        <span class="logo_name">{{ user.fullname }}</span>
+                        <span class="logo_name cursor-pointer" @click="gotoProfile()">{{ user.fullname }}</span>
                         <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
                         <i class="bx bx-x" id="sidebar-close"></i>
                     </div>
-                </router-link>
-                <div class="menu_container">
-                    <div class="menu_items">
-                        <ul class="menu_item" id="menu_item_click">
-                            <div class="menu_title flex">
-                                <span class="title">Dashboard</span>
-                                <span class="line"></span>
+                    <!-- </router-link> -->
+                    <div class="menu_container">
+                        <div class="menu_items">
+                            <ul class="menu_item" id="menu_item_click">
+                                <div class="menu_title flex">
+                                    <span class="title">Dashboard</span>
+                                    <span class="line"></span>
+                                </div>
+                                <BtnClick :items="myItems" @clickedID="onClicked"></BtnClick>
+                            </ul>
+                        </div>
+                        <div class="sidebar_profile flex">
+                            <span class="nav_image">
+                                <img src="images/profile.jpg" alt="logo_img" />
+                            </span>
+                            <div class="data_text">
+                                <span class="name">David Oliva</span>
+                                <span class="email">david@gmail.com</span>
                             </div>
-                            <BtnClick :items="myItems" @clickedID="onClicked"></BtnClick>
-                        </ul>
-                    </div>
-                    <div class="sidebar_profile flex">
-                        <span class="nav_image">
-                            <img src="images/profile.jpg" alt="logo_img" />
-                        </span>
-                        <div class="data_text">
-                            <span class="name">David Oliva</span>
-                            <span class="email">david@gmail.com</span>
                         </div>
                     </div>
-                </div>
-            </nav>
-            <nav class="routeview">
-                <RouterView />
-            </nav>
+                </nav>
+            </div>
+            <div class="col-12">
+                <nav class="routeview ">
+                    <RouterView />
+                </nav>
+            </div>
+
         </div>
     </div>
 </template>

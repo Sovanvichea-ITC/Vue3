@@ -16,7 +16,7 @@
                 <h6><b>To</b></h6>
             </div>
             <div class="flex justify-content-center text-color-name mb-2">
-                <h5><b><b> {{ confirmTransfered.TransferName }}</b></b></h5>
+                <h5><b><b> {{ confirmTransfered.ReciveName }}</b></b></h5>
 
             </div>
             <div class="text-name-transfered flex justify-content-center mb-2">
@@ -31,6 +31,7 @@
             <!-- <div class="bg-color-btn-cancle p-2 rounded-lg flex justify-content-center mt-3 font-weight-bold"
                 @click="clickedbtn(false)">CANCLE</div> -->
         </div>
+        {{ transferedInfo }}
     </div>
 </template>
 
@@ -87,15 +88,24 @@
 <script>
 
 export default {
+    props: ['transferedInfo'],
     data() {
         return {
-            confirmTransfered: { TransferName: 'YANN Sovanvichea', amountMoney: '100', type: 'USD', accountID: '017715327', dateTransdered: 'Aug 30, 2023 04:00PM' }
+            confirmTransfered: { ReciveName: 'YANN Sovanvichea', amountMoney: '100', type: 'USD', accountID: '017715327', dateTransdered: 'Aug 30, 2023 04:00PM' }
         }
 
     },
     // props: ['confirmtTransfer'],
 
     mounted() {
+        // confirmTransfered: { ReciveName: 'YANN Sovanvichea', amountMoney: '100', type: 'USD', accountID: '017715327', dateTransdered: 'Aug 30, 2023 04:00PM' }
+        var date = new Date()
+
+        this.confirmTransfered.amountMoney = this.transferedInfo.amountMoney;
+        this.confirmTransfered.type = this.transferedInfo.sendFromAcc.type;
+        this.confirmTransfered.accountID = this.transferedInfo.reciveAcc.id;
+        this.confirmTransfered.ReciveName = this.transferedInfo.reciveAcc.username
+        this.confirmTransfered.dateTransdered = date.toLocaleString();
 
     },
     methods: {

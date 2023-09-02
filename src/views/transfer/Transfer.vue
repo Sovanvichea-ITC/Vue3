@@ -88,7 +88,7 @@ export default {
   }),
   methods: {
     getFeature(feature) {
-      this.myItems[1].params = feature
+      // this.myItems[1].params = feature
       // this.myItems = this.myItems
       // alert(feature)
     }
